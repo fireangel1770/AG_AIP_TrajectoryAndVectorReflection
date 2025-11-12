@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
+using static UnityEngine.GraphicsBuffer;
 
 public class ProjectileTurret : MonoBehaviour
 {
@@ -16,12 +18,12 @@ public class ProjectileTurret : MonoBehaviour
     [SerializeField] LineRenderer line;
     [SerializeField] bool useLowAngle;
 
-    List<Vector3> points = new List<Vector3>();
-
+    List<Vector3> trajectoryPoints = new List<Vector3>();
+    Ray theRayThatWillDefinedTheDirectionOfTheRayCastForTheDrawLine; 
     // Start is called before the first frame update
     void Start()
     {
-        
+        line = GetComponent<LineRenderer>();
     }
 
     // Update is called once per frame
@@ -33,7 +35,12 @@ public class ProjectileTurret : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1"))
             Fire();
+
+        LineDrawCalculation();
+        DrawLine();
     }
+ 
+
 
     void Fire()
     {
@@ -68,6 +75,54 @@ public class ProjectileTurret : MonoBehaviour
             gun.transform.localEulerAngles = new Vector3(360f - (float)angle, 0, 0);
     }
 
+    void LineDrawCalculation()
+    {
+        Vector3 v = projectileSpeed * barrelEnd.transform.forward;
+        float g = gravity.y;
+
+        Vector3 point = Vector3.zero;
+
+        trajectoryPoints.Clear();
+        trajectoryPoints.Add(barrelEnd.position);
+        int iCount = 0;
+        for (float t = 0; t < 10; t += Time.deltaTime)
+        {
+            Vector3 rayStart = trajectoryPoints[iCount];
+            var endPoint = KinematicEquation(v, gravity, t);
+            if (!Physics.Raycast(rayStart, endPoint - rayStart, out RaycastHit hitInfo, 0.15f, targetLayer))
+            {
+                trajectoryPoints.Add(KinematicEquation(v, gravity, t));
+            }
+            else
+            {
+                trajectoryPoints.Add(hitInfo.point);
+                t = 10;
+                return;
+            }
+            iCount++;
+        }
+
+    }
+    void DrawLine()
+    {
+
+        line.positionCount = trajectoryPoints.Count;
+        for (int i = 0; i < line.positionCount; i++)
+        {
+
+            line.SetPosition(i, trajectoryPoints[i]);
+        }
+    }
+    Vector3 KinematicEquation(Vector3 vi, Vector3 a, float t)
+    {
+        var xInitial = barrelEnd.position;
+
+        var dx = vi.x * t + 0.5f * a.x * Mathf.Pow(t,2) + xInitial.x;
+        var dy = vi.y * t + 0.5f * -a.y * Mathf.Pow(t,2) + xInitial.y;
+        var dz = vi.z * t + 0.5f * a.z * Mathf.Pow(t,2) + xInitial.z;
+        Vector3 point = new Vector3(dx, dy, dz);
+        return point;
+    }
     float? CalculateTrajectory(Vector3 target, bool useLow)
     {
         Vector3 targetDir = target - barrelEnd.position;
@@ -98,5 +153,6 @@ public class ProjectileTurret : MonoBehaviour
         }
         else
             return null;
+
     }
 }
