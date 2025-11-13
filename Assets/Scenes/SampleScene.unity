@@ -337,16 +337,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 614981707}
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
---- !u!4 &273926564 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7319960332665357401, guid: ecd1c9245462374438a34c4efe94cb62, type: 3}
-  m_PrefabInstance: {fileID: 1304823367172134086}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &348964167 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2943615637418120780, guid: ecd1c9245462374438a34c4efe94cb62, type: 3}
-  m_PrefabInstance: {fileID: 1304823367172134086}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &527915968
 GameObject:
   m_ObjectHideFlags: 0
@@ -753,40 +743,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &906827560 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8845286314262028045, guid: ecd1c9245462374438a34c4efe94cb62, type: 3}
-  m_PrefabInstance: {fileID: 1304823367172134086}
-  m_PrefabAsset: {fileID: 0}
---- !u!120 &906827561 stripped
-LineRenderer:
-  m_CorrespondingSourceObject: {fileID: 8629476504871648233, guid: ecd1c9245462374438a34c4efe94cb62, type: 3}
-  m_PrefabInstance: {fileID: 1304823367172134086}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &906827564
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 906827560}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 248c03b1db8288c4ebaf23833e4a5a08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  targetLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  crosshair: {fileID: 527915968}
-  baseTurnSpeed: 3
-  gun: {fileID: 348964167}
-  turretBase: {fileID: 273926564}
-  barrelEnd: {fileID: 1729065345}
-  line: {fileID: 906827561}
-  laserPoints: []
-  hitMarker: {fileID: 0}
-  testingMarker: 0
 --- !u!1 &963194225
 GameObject:
   m_ObjectHideFlags: 0
@@ -987,11 +943,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 614981707}
   m_LocalEulerAnglesHint: {x: -23.68, y: -10.409, z: -10.498}
---- !u!4 &1729065345 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2949424573658633281, guid: ecd1c9245462374438a34c4efe94cb62, type: 3}
-  m_PrefabInstance: {fileID: 1304823367172134086}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2059593559
 GameObject:
   m_ObjectHideFlags: 0
@@ -1289,10 +1240,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8845286314262028045, guid: ecd1c9245462374438a34c4efe94cb62, type: 3}
-      insertIndex: 2
-      addedObject: {fileID: 906827564}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ecd1c9245462374438a34c4efe94cb62, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
